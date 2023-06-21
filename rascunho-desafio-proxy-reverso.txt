@@ -22,10 +22,6 @@ docker network create laranet
 Listando as redes
 docker network list
 
-docker run -d --network laranet --name laravel valdyrtorres/laravel:prod
-
-docker ps
-
 BUILD
 NGINX
 docker build -t valdyrtorres/nginx:prod . -f Dockerfile.prod
@@ -34,10 +30,34 @@ cd ..
 docker build -t valdyrtorres/laravel:prod laravel -f laravel/Dockerfile.prod
 
 Rodando
-docker run -d --network laranet --name laravel -p 8080:80 valdyrtorres/laravel:prod
+docker run -d --network laranet --name laravel valdyrtorres/laravel:prod
 docker run -d --network laranet --name nginx -p 8080:80 valdyrtorres/nginx:prod
 
 docker logs nginx
+---------------
+
+Comandos:
+Apagar todos os containers:
+docker rm $(docker ps -a -q) -f
+
+Subir todos os containers
+docker-compose up
+
+Subir todos os containers sem prender a tela:
+docker-compose up -d
+
+derrubar todos os containers:
+docker-compose down
+
+Subir todos os containers sem prender a tela e rebuildando as imagens:
+docker-compose up -d --build
+
+
+
+
+
+
+
 
 
 
