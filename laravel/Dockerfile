@@ -6,7 +6,7 @@ RUN apt-get update && \
     apt-get install livzip-dev -y && \
     docker-php-ext-install zip
     
-RUN php -r "copy('https://getcomposer.org/installer', ''" \   
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \   
     php composer-setup.php && \
     php -r "unlink('composer-setup.php');"
 
