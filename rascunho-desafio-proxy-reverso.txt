@@ -52,9 +52,14 @@ docker-compose down
 Subir todos os containers sem prender a tela e rebuildando as imagens:
 docker-compose up -d --build
 
+criar tabela:
+use nodedb
+create table people(id int not null auto_increment, name varchar(255), primary key(id));
+
 
 ---------------------------------
 Usando o node
+Vá para o diretório que você quer apontar como volume
 docker run --rm -it -v $(pwd)/:/usr/src/app -p 3000:3000 node:15 bash
 
 cd /usr/src/app
@@ -67,7 +72,16 @@ npm install express --save
 Depois de criar o dockerfile:
 docker build -t valdyrtorres/hello-express .
 
+docker run -p 3000:3000 valdyrtorres/hello-express:latest
 
+Se fizer com o Dockerfile.prod e fora da pasta node:
+docker build -t valdyrtorres/hello-express node/ -f node/Dockerfile.prod
+
+Comandos:
+docker exec -it app bash
+
+Acessae MySQL
+docker exec -it db bash
 
 
 
