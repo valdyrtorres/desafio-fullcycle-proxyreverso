@@ -53,6 +53,25 @@ Subir todos os containers sem prender a tela e rebuildando as imagens:
 docker-compose up -d --build
 
 
+---------------------------------
+Usando o node
+docker run --rm -it -v $(pwd)/:/usr/src/app -p 3000:3000 node:15 bash
+
+cd /usr/src/app
+touch oi
+rm oi
+Criando app mínimo node
+npm init 
+npm install express --save
+
+Depois de criar o dockerfile:
+docker build -t valdyrtorres/hello-express .
+
+
+
+
+
+
 
 
 
