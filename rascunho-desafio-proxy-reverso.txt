@@ -80,9 +80,11 @@ docker build -t valdyrtorres/hello-express node/ -f node/Dockerfile.prod
 Comandos:
 docker exec -it app bash
 
-Acessae MySQL
+Acesse o MySQL
 docker exec -it db bash
 
+Após a instalação do dockerize:
+dockerize -wait tcp://db:3306
 
 
 
