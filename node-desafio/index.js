@@ -8,12 +8,49 @@ const config = {
     database: 'nodedb'
 };
 
+const mysql = require('mysql');
+const conn = mysql.createConnection(config);
+
+const table_exists_query = `
+  SELECT COUNT(*) table_exists 
+    FROM information_schema.TABLES 
+   WHERE TABLE_SCHEMA = DATABASE()
+     AND TABLE_TYPE = 'BASE TABLE'
+     AND TABLE_NAME = 'people';`;
+
+var tabela_people_existe = false;
+
+conn.query(table_exists_query, function(err, linhas){ 
+
+    console.log(linhas);
+
+    tabela_people_existe = linhas[0].table_exists > 0 ? true : false
+
+    console.log(linhas[0].table_exists);
+
+    console.log(tabela_people_existe);
+
+    if(!tabela_people_existe) {
+        console.log('ENTREI');
+        var sqlCriar = `CREATE TABLE people(id int not null auto_increment, name varchar(255), primary key(id))`;
+        conn.query(sqlCriar, function(err, rows) {
+            if(err) 
+                console.log('Erro na criação da tabela people');
+            else
+                console.log('Tabela people criada');
+        });
+    }
+    
+});
+
+conn.end()
+
 let usuarios = ["Valdir", "Torres", "Borges", "Rildav", "Gesbor"];
 
 app.get('/', (req,res) => {
-    
-    const mysql = require('mysql');
+
     const connection = mysql.createConnection(config);
+
 
     let usuario = usuarios[(Math.floor(Math.random() * usuarios.length))];
     var sql = `INSERT INTO people(name) values('${usuario}')`;
@@ -40,8 +77,6 @@ app.get('/', (req,res) => {
         console.log(conteudo);
         res.send(conteudo);
     });
-
-    
 
     connection.end()
 })

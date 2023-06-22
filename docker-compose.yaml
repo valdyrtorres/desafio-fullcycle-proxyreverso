@@ -8,8 +8,8 @@ services:
     #entrypoint: dockerize -wait tcp://db:3306 -timeout 20s docker-entrypoint.sh
     networks:
       - node-network
-    volumes:
-      - ./node-desafio:/usr/src/app
+    #volumes:
+    #  - ./node-desafio:/usr/src/app
     tty: true
     ports:
       - "3000:3000"
