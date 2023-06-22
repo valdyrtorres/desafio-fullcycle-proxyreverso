@@ -92,6 +92,10 @@ Testando node e mysql sem docker-compose:
 
 docker network create node-net-sem-dc
 
+docker-compose -f docker-compose-mysql.yaml up
+
+cd node-desafio
+
 docker build -t valdyrtorres/node-desafio-sem-dc .
 docker run -p 3000:3000 valdyrtorres/node-desafio-sem-dc:latest
 
