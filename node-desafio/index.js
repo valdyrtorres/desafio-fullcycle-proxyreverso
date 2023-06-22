@@ -35,15 +35,15 @@ conn.query(table_exists_query, function(err, linhas){
         var sqlCriar = `CREATE TABLE people(id int not null auto_increment, name varchar(255), primary key(id))`;
         conn.query(sqlCriar, function(err, rows) {
             if(err) 
-                console.log('Erro na criação da tabela people');
+                console.log('Erro na criação da tabela people:' + err.message);
             else
                 console.log('Tabela people criada');
         });
     }
+
+    conn.end();
     
 });
-
-conn.end()
 
 let usuarios = ["Valdir", "Torres", "Borges", "Rildav", "Gesbor"];
 

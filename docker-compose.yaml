@@ -2,6 +2,7 @@ version: '3'
 
 services:
   app:
+    #restart: always
     build:
       context: node-desafio
     container_name: app
@@ -34,7 +35,7 @@ services:
     restart: always
     build:
       context: ./nginx-desafio
-      dockerfile: Dockerfile.prod  
+      dockerfile: Dockerfile.prod
     image: valdyrtorres/nginx-desafio:prod
     container_name: nginx
     networks:
@@ -42,9 +43,6 @@ services:
     ports:
       - "8080:80"
 
-
 networks:
   node-network:
     driver: bridge
-
-
