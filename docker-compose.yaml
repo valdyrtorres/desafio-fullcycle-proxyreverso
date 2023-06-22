@@ -30,6 +30,19 @@ services:
     networks:
       - node-network
 
+  nginx:
+    restart: always
+    build:
+      context: ./nginx-desafio
+      dockerfile: Dockerfile.prod  
+    image: valdyrtorres/nginx-desafio:prod
+    container_name: nginx
+    networks:
+      - node-network
+    ports:
+      - "8080:80"
+
+
 networks:
   node-network:
     driver: bridge
