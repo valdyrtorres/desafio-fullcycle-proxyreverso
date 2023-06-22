@@ -34,8 +34,10 @@ conn.query(table_exists_query, function(err, linhas){
         console.log('ENTREI');
         var sqlCriar = `CREATE TABLE people(id int not null auto_increment, name varchar(255), primary key(id))`;
         conn.query(sqlCriar, function(err, rows) {
-            if(err) 
+            if(err) {
                 console.log('Erro na criação da tabela people:' + err.message);
+                conn.end();
+            }
             else
                 console.log('Tabela people criada');
         });
