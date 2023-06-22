@@ -85,6 +85,16 @@ docker exec -it db bash
 
 Após a instalação do dockerize:
 dockerize -wait tcp://db:3306
+----------------------
+
+Testando node e mysql sem docker-compose:
+
+
+docker network create node-net-sem-dc
+
+docker build -t valdyrtorres/node-desafio-sem-dc .
+docker run -p 3000:3000 valdyrtorres/node-desafio-sem-dc:latest
+
 
 
 
