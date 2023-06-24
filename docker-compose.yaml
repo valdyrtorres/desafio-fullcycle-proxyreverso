@@ -30,16 +30,16 @@ services:
   #   networks:
   #     - node-network
 
-  # nginx:
-  #   build:
-  #     context: ./nginx-desafio
-  #     dockerfile: Dockerfile.prod
-  #   image: valdyrtorres/nginx-desafio:prod
-  #   container_name: nginx
-  #   networks:
-  #     - node-network
-  #   ports:
-  #     - "8080:80"
+  nginx:
+    build:
+      context: ./nginx-desafio
+      dockerfile: Dockerfile.prod
+    image: valdyrtorres/nginx-desafio:prod
+    container_name: nginx
+    networks:
+      - node-network
+    ports:
+      - "8080:80"
 
 networks:
   node-network:
