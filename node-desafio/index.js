@@ -10,6 +10,14 @@ const config = {
 
 const mysql = require('mysql');
 
+// Criar tabela people
+const conn = mysql.createConnection(config);
+
+const sqlCriaTabela = `CREATE TABLE if not exists people(id int not null auto_increment, name varchar(255), primary key(id));`
+conn.query(sqlCriaTabela)
+conn.end()
+// Fim criar tabela people
+
 let usuarios = ["Valdir", "Torres", "Borges", "Rildav", "Gesbor"];
 
 app.get('/', (req,res) => {
